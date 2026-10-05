@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import "./globals.css";
 import { SAMPLES } from "../lib/samples";
+import { analyzeMessage } from "../lib/analyze-client";
 
 const KEY = "phishing-detector-gemini-key";
 
@@ -41,13 +42,7 @@ export default function Page() {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, apiKey }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Analysis failed");
+      const data = await analyzeMessage(text, apiKey);
       setResult(data);
     } catch (err) {
       setError(err.message || "Analysis failed");
@@ -103,7 +98,7 @@ export default function Page() {
           <div className="keybox">
             <label htmlFor="key">Gemini API key</label>
             <input id="key" type="password" value={apiKey} onChange={(event) => saveKey(event.target.value)} placeholder="Optional. Rules still run without it." autoComplete="off" />
-            <p className="note">The key stays in this browser and is sent only to your own /api/analyze route. A server GEMINI_API_KEY is used when this box is empty.</p>
+            <p className="note">The key stays in this browser and is sent only to Google for the explanation. GitHub Pages cannot hide a server key, so do not share this browser profile.</p>
           </div>
           {error ? <p className="error">{error}</p> : null}
         </div>

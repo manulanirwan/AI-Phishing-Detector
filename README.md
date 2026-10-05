@@ -1,5 +1,7 @@
 # AI Phishing Detector
 
+Live site: https://manulanirwan.github.io/AI-Phishing-Detector/
+
 Paste a suspicious email or message. Local rules score the risk. Gemini writes the explanation. Text inside the email cannot override a high rule score.
 
 Built by Manula Nirwan as a cybersecurity portfolio project.
@@ -30,6 +32,10 @@ The total is capped at 100. Bands: 0-30 low, 31-60 medium, 61-100 high.
 If the rules score is high and Gemini says the message is safe, the high score stays.
 
 ## Run the website
+
+The live site is GitHub Pages. It is a static site, so the score runs in your browser. Paste your Gemini key in the page if you want the written explanation. GitHub Secrets cannot supply that key to Pages.
+
+Local copy:
 
 ```bash
 cd frontend
