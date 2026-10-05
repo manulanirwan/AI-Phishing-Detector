@@ -1,4 +1,4 @@
-import { nextStep, scoreEmail, verdictFromBand } from "../../lib/analyzer";
+import { nextStep, scoreEmail, verdictFromBand } from "../../../lib/analyzer";
 
 export const runtime = "nodejs";
 
